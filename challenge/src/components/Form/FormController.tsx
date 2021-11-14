@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+import { useForm } from "../../hooks/useForm";
 import { SendFormContextProvider } from "../../contexts/SendFormContext";
 
 import { RegisterUser } from "./RegisterUser";
+import { RegisterPersonalData } from "./RegisterPersonalData";
 
 export const FormController: React.FC = () => {
+  const [currentStage, setCurrentStage] = useState(0);
+  const { data } = useForm();
+
+  console.log(currentStage);
+  console.log(data);
+
   return (
     <SendFormContextProvider>
-      <RegisterUser />
+      {currentStage === 0 && (
+        <RegisterUser
+          currentStage={currentStage}
+          setCurrentStage={setCurrentStage}
+        />
+      )}
+      {currentStage === 1 && <RegisterPersonalData />}
     </SendFormContextProvider>
   );
 };

@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const useForm = () => {
+  // Data
+  const [data, setData] = useState({});
+
   // Register user
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
@@ -17,6 +20,8 @@ export const useForm = () => {
   });
 
   return {
+    data,
+    setData,
     email,
     setEmail,
     pass,

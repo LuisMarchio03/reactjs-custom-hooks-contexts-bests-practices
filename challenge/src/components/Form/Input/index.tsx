@@ -1,4 +1,5 @@
 import React, { FormEvent } from "react";
+import "./styles.scss";
 
 type InputProps = {
   type: string;
@@ -7,6 +8,7 @@ type InputProps = {
   value: string;
   onchange: (event: FormEvent) => any;
   placeholder: string;
+  width: string;
 };
 
 export const Input: React.FC<InputProps> = ({
@@ -16,9 +18,11 @@ export const Input: React.FC<InputProps> = ({
   value,
   onchange,
   placeholder,
+  width,
 }) => {
   return (
     <input
+      style={{ width: width }}
       type={type}
       id={id}
       name={name}
