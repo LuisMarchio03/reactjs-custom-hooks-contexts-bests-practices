@@ -1,13 +1,15 @@
-import React, { useState } from "react";
-import { useForm } from "../../hooks/useForm";
-import { SendFormContextProvider } from "../../contexts/SendFormContext";
+import React, { useContext, useState } from "react";
+import {
+  SendFormContext,
+  SendFormContextProvider,
+} from "../../contexts/SendFormContext";
 
 import { RegisterUser } from "./RegisterUser";
 import { RegisterPersonalData } from "./RegisterPersonalData";
 
 export const FormController: React.FC = () => {
   const [currentStage, setCurrentStage] = useState(0);
-  const { data } = useForm();
+  const { data } = useContext(SendFormContext);
 
   console.log(currentStage);
   console.log(data);

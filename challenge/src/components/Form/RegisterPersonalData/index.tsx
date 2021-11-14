@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { useForm } from "../../../hooks/useForm";
+import React, { FormEvent, useContext } from "react";
 import { SendFormContext } from "../../../contexts/SendFormContext";
 import { Form } from "..";
 import { Typography } from "../../Typography";
@@ -7,9 +6,29 @@ import { Input } from "../Input";
 import { Button } from "../../Button";
 
 export const RegisterPersonalData: React.FC = () => {
-  const { name, setName, age, setAge, cpf, setCpf, address, setAddress } =
-    useForm();
-  const { onSubmit: sendForm } = useContext(SendFormContext);
+  const {
+    data,
+    setData,
+    name,
+    setName,
+    age,
+    setAge,
+    cpf,
+    setCpf,
+    address,
+    setAddress,
+  } = useContext(SendFormContext);
+
+  const registerPersonalData = {
+    name,
+    age,
+    cpf,
+  };
+
+  const sendForm = (event: FormEvent) => {
+    event.preventDefault();
+    setData({ ...data, registerPersonalData });
+  };
 
   return (
     <>

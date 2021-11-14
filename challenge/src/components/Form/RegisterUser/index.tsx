@@ -1,6 +1,6 @@
-import React, { FormEvent, useEffect } from "react";
+import React, { FormEvent, useContext, useEffect } from "react";
 import { Form } from "..";
-import { useForm } from "../../../hooks/useForm";
+import { SendFormContext } from "../../../contexts/SendFormContext";
 import { Button } from "../../Button";
 import { Typography } from "../../Typography";
 import { Input } from "../Input";
@@ -14,16 +14,19 @@ export const RegisterUser: React.FC<RegisterUserProps> = ({
   currentStage,
   setCurrentStage,
 }) => {
-  const { data, setData, email, setEmail, pass, setPass } = useForm();
+  const { data, setData, email, setEmail, pass, setPass } =
+    useContext(SendFormContext);
 
-  const dataRegisterUser = {
+  const registerUser = {
     email,
     pass,
   };
 
-  const nextForm = () => {
-    setData({ ...data, dataRegisterUser });
+  const sendForm = (event: FormEvent) => {
+    event.preventDefault();
+
     setCurrentStage(currentStage + 1);
+    setData({ ...data, registerUser });
   };
 
   return (
@@ -32,12 +35,7 @@ export const RegisterUser: React.FC<RegisterUserProps> = ({
         title="Formulário fase 01"
         subtitle="Cadastre os seus dados de login"
       />
-      <Form
-        onSubmit={(event: FormEvent) => {
-          event.preventDefault();
-          nextForm();
-        }}
-      >
+      <Form onSubmit={sendForm}>
         <Input
           width="100%"
           type="email"
