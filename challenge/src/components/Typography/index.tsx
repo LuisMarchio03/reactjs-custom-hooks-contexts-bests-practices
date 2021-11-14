@@ -5,7 +5,7 @@ type TypographyProps = {
   subtitle?: string;
 };
 
-const Typography: React.FC<TypographyProps> = ({ title, subtitle }) => {
+export const Typography: React.FC<TypographyProps> = ({ title, subtitle }) => {
   return (
     <>
       <h2>{title}</h2>
@@ -13,5 +13,3 @@ const Typography: React.FC<TypographyProps> = ({ title, subtitle }) => {
     </>
   );
 };
-
-export default Typography;

@@ -1,11 +1,11 @@
 import { createContext, FormEvent, ReactNode } from "react";
 import { useForm } from "../hooks/useForm";
 
-// type SendFormContextValue = {
-//   onSubmit: () => any;
-// };
+type SendFormContextData = {
+  onSubmit: (event: FormEvent) => void;
+};
 
-export const SendFormContext = createContext({});
+export const SendFormContext = createContext({} as SendFormContextData);
 
 type SendFormProviderProps = {
   children: ReactNode;
@@ -21,7 +21,7 @@ export const SendFormContextProvider = ({
   };
 
   return (
-    <SendFormContext.Provider value={onSubmit}>
+    <SendFormContext.Provider value={{ onSubmit }}>
       {children}
     </SendFormContext.Provider>
   );
